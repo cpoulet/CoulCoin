@@ -29,9 +29,9 @@ contract('------ Matrice Coin ------', function(accounts) {
 			return matrice.getBalance.call(a1);
 		}).then(function(init) {
 			init_1 = init.toNumber();
-			return matrice.sendCoin.call(a1, amount, {from: a0});
+			return matrice.sendCoin(a1, amount, {from: a0});
 		}).then(function(success) {
-			assert.isTrue(success, "Send function didn't worked :(");
+			//assert.isTrue(success.valueOf(), "Send function didn't worked :(");
 			return matrice.getBalance.call(a0);
 		}).then(function(balance) {
 			assert.equal(init_0 - amount, balance.valueOf(), "42 coins should have been transfered from first to second account.");
@@ -51,4 +51,13 @@ const await myFunc = () => {
 
 	console.log(response);
 };
+*/
+
+/*
+	it("MatriceCoin transfert", async function() {
+		var matrice = await MatriceCoin.deployed();
+		var balance_0 = (await matrice.getBalance.call(accounts[0])).toNumber();
+		assert.equal(balance_0, 10000, "10000 coin havent been created.");
+	});
+
 */
