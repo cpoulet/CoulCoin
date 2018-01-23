@@ -1,47 +1,58 @@
 var MatriceCoin = artifacts.require("./MatriceCoin.sol");
 
 contract('------ Matrice Coin ------', function(accounts) {
-	it("Creation of 10 000 MatriceCoin in the first account", function() {
-		return MatriceCoin.deployed().then(function(instance) {
-			return instance.getBalance.call(accounts[0]);
-		}).then(function(balance) {
-			assert.equal(balance.valueOf(), 10000, "10 000 coins weren't created in the first account.");
-		});
+	var a0 = accounts[0];
+	var a1 = accounts[1];
+	var a2 = accounts[2];
+	var a3 = accounts[3];
+	var a4 = accounts[4];
+	var a5 = accounts[5];
+	
+    it("MatriceCoin creation", async function() {
+        var matrice = await MatriceCoin.deployed();
+		var balance_0 = (await matrice.getBalance.call(accounts[0])).toNumber();
+		assert.equal(balance_0, 10000, "10000 coin havent been created.");
 	});
-	it("MatriceCoin transfert", function() {
-		var matrice;
+/*	it("Transfering coins", async function() {
 
-		var a0 = accounts[0];
-		var a1 = accounts[1];
-
-		var init_0;
-		var init_1;
-		var balance_0;
-		var balance_1;
-
-		var amount = 42;
-
-		return MatriceCoin.deployed().then(function(instance) {
-			matrice = instance;
-			return matrice.getBalance.call(a0);
-		}).then(function(init) {
-			init_0 = init.toNumber();
-			return matrice.getBalance.call(a1);
-		}).then(function(init) {
-			init_1 = init.toNumber();
-			return matrice.sendCoin(a1, amount, {from: a0});
-		}).then(function(success) {
-			//assert.isTrue(success.valueOf(), "Send function didn't worked :(");
-			return matrice.getBalance.call(a0);
-		}).then(function(balance) {
-			assert.equal(init_0 - amount, balance.valueOf(), "42 coins should have been transfered from first to second account.");
-			return matrice.mint.call(a0, amount);
-		}).then(function(success) {
-			assert.isTrue(success, "Mint function didn't worked :(");
-			return matrice.getBalance.call(a0);
-		}).then(function(balance) {
-			assert.equal(init_0 + amount, balance.valueOf(), "42 coins should have been added to the first account.");
-		});
+		var matrice = await MatriceCoin.deployed();
+		var balance_0 = (await matrice.getBalance.call(a0)).toNumber();
+	    await matrice.sendCoin(a1, 100, {from: a0});
+		var balance_0 = (await matrice.getBalance.call(a0)).toNumber();
+		var balance_1 = (await matrice.getBalance.call(a1)).toNumber();
+		assert.equal(balance_0, 9900, "100 coin should have been transfered.");
+		assert.equal(balance_1, 100, "100 coin should have been transfered.");
+	});
+	it("Minting coins", async function() {
+        var matrice = await MatriceCoin.deployed();
+		var balance_0 = (await matrice.getBalance.call(a0)).toNumber();
+	    await matrice.mint(a1, 42, {from: a0});
+		var balance_1 = (await matrice.getBalance.call(a1)).toNumber();
+		assert.equal(balance_1, 42, "42 coin should have been created for a1.");
+	    await matrice.mint(a0, 100, {from: a0});
+		var balance_0 = (await matrice.getBalance.call(a0)).toNumber();
+		assert.equal(balance_0, 10100, "100 coin should have been created for a0.");
+	});
+*/	it("Transfering coins", async function() {
+        var matrice = await MatriceCoin.deployed();
+	    await matrice.mint(a0, 420, {from: a0});
+	    await matrice.mint(a1, 42, {from: a0});
+	    await matrice.mint(a2, 42, {from: a0});
+	    await matrice.sendCoin(a3, 210, {from: a0});
+	    await matrice.sendCoin(a4, 12, {from: a1});
+	    await matrice.mint(a5, 42, {from: a1});
+		var balance_0 = (await matrice.getBalance.call(a0)).toNumber();
+		var balance_1 = (await matrice.getBalance.call(a1)).toNumber();
+		var balance_2 = (await matrice.getBalance.call(a2)).toNumber();
+		var balance_3 = (await matrice.getBalance.call(a3)).toNumber();
+		var balance_4 = (await matrice.getBalance.call(a4)).toNumber();
+		var balance_5 = (await matrice.getBalance.call(a5)).toNumber();
+		assert.equal(balance_0, 10210, "wrong a0");
+		assert.equal(balance_1, 30, "wrong a1");
+		assert.equal(balance_2, 42, "wrong a2");
+		assert.equal(balance_3, 210, "wrong a3");
+		assert.equal(balance_4, 12, "wrong a4");
+		assert.equal(balance_5, 0, "wrong a5");
 	});
 });
 
@@ -51,13 +62,4 @@ const await myFunc = () => {
 
 	console.log(response);
 };
-*/
-
-/*
-	it("MatriceCoin transfert", async function() {
-		var matrice = await MatriceCoin.deployed();
-		var balance_0 = (await matrice.getBalance.call(accounts[0])).toNumber();
-		assert.equal(balance_0, 10000, "10000 coin havent been created.");
-	});
-
 */
