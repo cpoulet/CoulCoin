@@ -4,7 +4,7 @@ import "./Other.sol";
 
 // token, see: https://github.com/ConsenSys/Tokens. Cheers!
 
-contract MatriceCoin {
+contract CoulCoin {
 
 	address public minter;
 	mapping (address => uint) balances;
@@ -12,7 +12,7 @@ contract MatriceCoin {
 	event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
 	// Contract creation
-	function MatriceCoin() public {
+	function CoulCoin() public {
 		minter = msg.sender;
 		balances[tx.origin] = 10000;
 	}

@@ -1,8 +1,8 @@
-var MatriceCoin = artifacts.require("./MatriceCoin.sol");
+var CoulCoin = artifacts.require("./CoulCoin.sol");
 var Other = artifacts.require("./Other.sol");
 
 module.exports = function(deployer) {
   deployer.deploy(Other);
-  deployer.link(Other, MatriceCoin);
-  deployer.deploy(MatriceCoin);
+  deployer.link(Other, CoulCoin);
+  deployer.deploy(CoulCoin);
 };
