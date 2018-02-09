@@ -56,6 +56,11 @@ contract CoulCoin {
         return true;
     }
 
+    // Get Brigade's Envelope
+    function getEnvelope() public returns(uint){
+        return envelope;
+    }
+
 	// Transfert function
 	function sendCoin(address receiver, uint amount) public returns(bool) {
 		if (balances[msg.sender] < amount) return false;
