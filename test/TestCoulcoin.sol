@@ -49,17 +49,4 @@ contract TestCoulcoin {
 			Assert.isFalse((0 == coulcoin.getEnvelope()), "The emptyEnvelope fonction haven't empty the envelope.");
 		}
 	}
-
-	// Don't know how to test it with proper address.
-	/*function test_sendCoin(address receiver, uint amount) public {
-
-		uint balance_sender = coulcoin.getBalance(msg.sender);
-		uint balance_receiver = coulcoin.getBalance(receiver);
-		bool success = coulcoin.sendCoin(receiver, amount);
-		Assert.isFalse(success, "The amount is upper than the balance of the sender.");
-		if (success)
-		{
-			Assert.isFalse((balance_sender - amount == coulcoin.getBalance(msg.sender) || balance_receiver + amount == coulcoin.getBalance(receiver)), "Operations on the balances are not right.");
-		}
-	}*/
 }
